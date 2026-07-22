@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Dr. Marta — Architect, Professor and Design Advisor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F5F0E8;
+            --cream: #FAF7F2;
+            --white: #FFFFFF;
+            --text: #2C1810;
+            --brown: #5C3D2E;
+            --orange: #E65028;
+            --yellow: #F4C430;
+            --muted: #9B8575;
+            --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Anton', Impact, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-sans);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        /* Main */
+        main {
+            padding-top: 80px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 32px 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-sans);
+            font-size: clamp(44px, 7vw, 76px);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .hero h1 span {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(72px, 14vw, 140px);
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 0.95;
+            margin-top: 8px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 16px;
+        }
+
+        .hero .mission {
+            font-family: var(--font-sans);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--brown);
+            margin-bottom: 32px;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--text);
+            color: var(--white);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .hero .cta:hover {
+            background: var(--orange);
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 32px;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-head {
+            margin-bottom: 48px;
+        }
+
+        .section-head h2 {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-head p {
+            font-size: 15px;
+            color: var(--muted);
+            max-width: 520px;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            background: var(--cream);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card .image-wrap {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .project-info {
+            padding: 24px;
+        }
+
+        .project-info h3 {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .project-info p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .project-tag {
+            display: inline-block;
+            margin-top: 8px;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: var(--text);
+            color: var(--white);
+            padding: 80px 32px;
+        }
+
+        .newsletter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .newsletter h2 {
+            font-family: var(--font-display);
+            font-size: 42px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .newsletter p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 24px;
+        }
+
+        .newsletter .cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .newsletter-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .newsletter-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        /* Marquee */
+        .marquee {
+            overflow: hidden;
+            padding: 24px 0;
+            background: var(--cream);
+            border-top: 1px solid rgba(44, 24, 16, 0.06);
+            border-bottom: 1px solid rgba(44, 24, 16, 0.06);
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content span {
+            font-family: var(--font-display);
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            padding: 0 32px;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 32px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quote-section {
+            padding: 120px 32px;
+            text-align: center;
+            background: linear-gradient(rgba(44, 24, 16, 0.55), rgba(44, 24, 16, 0.55)), url('images/alegria.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .quote-section p {
+            font-family: var(--font-sans);
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--white);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 10vw, 96px);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--orange);
+            margin-bottom: 40px;
+            line-height: 1.05;
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .contact a {
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .contact a:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .contact-social {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .contact-social a {
+            border-bottom: none;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .contact-social a:hover {
+            color: var(--text);
+        }
+
+        /* Board */
+        .board {
+            background: var(--text);
+            color: var(--white);
+            padding: 100px 32px;
+        }
+
+        .board-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .board-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .board-head h2 {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            color: var(--yellow);
+        }
+
+        .board-head p {
+            color: rgba(255,255,255,0.5);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .board-card {
+            background: rgba(255,255,255,0.04);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .board-card:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .board-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .board-card-image {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .board-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .board-card .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--orange);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .board-card h4 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .board-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .board-card .cta {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-align: center;
+            align-self: flex-start;
+            transition: all 0.2s;
+        }
+
+        .board-card:hover .cta {
+            background: var(--white);
+            color: var(--text);
+            border-color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 32px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+            background: var(--bg);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .project-card .image-wrap {
+                aspect-ratio: 4/3;
+            }
+
+            .newsletter-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .newsletter-image {
+                display: none;
+            }
+
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .board-card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">Dr. Marta</a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#writing">Writing</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <section id="contact" class="contact">
+            <h2>Let's create something beautiful.</h2>
+            <p>For design consultations, speaking, or just to say hello.</p>
+            <a href="mailto:marta@drmarta.life">marta@drmarta.life</a>
+            <div class="contact-social">
+                <a href="https://www.instagram.com/marta.rodriguez_habitable/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/in/atelier-marta-rodriguez/" target="_blank">LinkedIn</a>
+                <a href="https://designandjoy.substack.com" target="_blank">Substack</a>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <p>"The spaces we inhabit shape who we are—whether it's a room, a city, or our inner landscape."</p>
+        </section>
+
+        <section id="work" class="section">
+            <div class="section-inner">
+                <div class="section-head">
+                    <h2>My projects</h2>
+                    <p>Nine spaces where design meets daily life — from the chair to the city, from the home to the spirit.</p>
+                </div>
+
+                <div class="project-grid">
+                    <a href="https://drmarta.design" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/drmarta.webp" alt="Dr. Marta Design">
+                        </div>
+                        <div class="project-info">
+                            <h3>Dr. Marta Design</h3>
+                            <p>Design for Health & Pleasure</p>
+                            <span class="project-tag">Design</span>
+                        </div>
+                    </a>
+
+                    <a href="https://habitable.studio" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/habitable-studio.jpg" alt="HABITABLE Studio">
+                        </div>
+                        <div class="project-info">
+                            <h3>HABITABLE Studio</h3>
+                            <p>Architecture and Design Innovation</p>
+                            <span class="project-tag">Studio</span>
+                        </div>
+                    </a>
+
+                    <a href="https://habitable.city" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/A-Prakash_Linear-City.jpg" alt="Habitable City">
+                        </div>
+                        <div class="project-info">
+                            <h3>Habitable City</h3>
+                            <p>Ideas for More Human Cities</p>
+                            <span class="project-tag">Journal</span>
+                        </div>
+                    </a>
+
+                    <a href="https://designandjoy.substack.com" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/design-joy.jpg" alt="Design & Joy">
+                        </div>
+                        <div class="project-info">
+                            <h3>Design & Joy</h3>
+                            <p>Letters on How Space Shapes Life</p>
+                            <span class="project-tag">Newsletter</span>
+                        </div>
+                    </a>
+
+                    <a href="https://alegriadevivir.life" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/alegria.jpg" alt="Alegría de Vivir">
+                        </div>
+                        <div class="project-info">
+                            <h3>Alegría de Vivir</h3>
+                            <p>Mind, Body and Spirit</p>
+                            <span class="project-tag">Spirituality</span>
+                        </div>
+                    </a>
+
+                    <a href="https://alegriadevivir.life/escuela" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/children-book-copy.png" alt="La Escuela de las Cosas Importantes">
+                        </div>
+                        <div class="project-info">
+                            <h3>La Escuela de las Cosas Importantes</h3>
+                            <p>Stories for Children</p>
+                            <span class="project-tag">Books</span>
+                        </div>
+                    </a>
+
+                    <a href="https://bancroftgardenberkeley.org" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/bancroft.png" alt="Bancroft Garden">
+                        </div>
+                        <div class="project-info">
+                            <h3>Bancroft Garden</h3>
+                            <p>A Garden for the Neighborhood</p>
+                            <span class="project-tag">Community Service</span>
+                        </div>
+                    </a>
+
+                    <a href="#contact" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/balcon.png" alt="Web Design">
+                        </div>
+                        <div class="project-info">
+                            <h3>Web Design</h3>
+                            <p>Elegant Web Design</p>
+                            <span class="project-tag">Service</span>
+                        </div>
+                    </a>
+
+                    <a href="https://subtlerevolution.net" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/Antonello_da_Messinan.webp" alt="Petite Architecture">
+                        </div>
+                        <div class="project-info">
+                            <h3>Petite Architecture</h3>
+                            <p>From the Chair to the City</p>
+                            <span class="project-tag">Research</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="newsletter-inner">
+                <div>
+                    <h2>Design & Joy</h2>
+                    <p>Letters on architecture, the body, relationships, childhood, and the joy of living.</p>
+                    <a href="https://designandjoy.substack.com" target="_blank" class="cta">Subscribe</a>
+                </div>
+                <div class="newsletter-image">
+                    <img src="images/petite-architecture-02.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>Design for better living</span>
+                <span>☺</span>
+                <span>From the chair to the city</span>
+                <span>☺</span>
+                <span>Beauty, joy, and harmony</span>
+                <span>☺</span>
+                <span>Spaces that shape who we are</span>
+                <span>☺</span>
+                <span>Design for better living</span>
+                <span>☺</span>
+                <span>From the chair to the city</span>
+                <span>☺</span>
+                <span>Beauty, joy, and harmony</span>
+                <span>☺</span>
+                <span>Spaces that shape who we are</span>
+                <span>☺</span>
+            </div>
+        </div>
+
+        <section id="writing" class="board">
+            <div class="board-inner">
+                <div class="board-head">
+                    <h2>Latest Writing</h2>
+                    <p>Essays from Design &amp; Joy on architecture, urbanism, and the design of life.</p>
+                </div>
+                <div class="board-grid">
+                    <a href="https://designandjoy.substack.com/p/space-therapy" target="_blank" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/writing-space-therapy.png" alt="Space Therapy">
+                        </div>
+                        <p class="tag">Design & Joy</p>
+                        <h4>Space Therapy</h4>
+                        <p>On the healing power of rooms.</p>
+                        <span class="cta">Read more</span>
+                    </a>
+                    <a href="https://designandjoy.substack.com/p/learning-beyond-walls-designing-joyful" target="_blank" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/writing-learning-beyond-walls.png" alt="Learning Beyond Walls">
+                        </div>
+                        <p class="tag">Design & Joy</p>
+                        <h4>Learning Beyond Walls</h4>
+                        <p>Designing joyful schools.</p>
+                        <span class="cta">Read more</span>
+                    </a>
+                    <a href="https://designandjoy.substack.com/p/when-color-becomes-space" target="_blank" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/writing-color-space.jpg" alt="When color becomes space">
+                        </div>
+                        <p class="tag">Design & Joy</p>
+                        <h4>When color becomes space</h4>
+                        <p>Color as an inhabitant of architecture.</p>
+                        <span class="cta">Read more</span>
+                    </a>
+                    <a href="https://designandjoy.substack.com/p/what-is-your-home-doing-to-your-body" target="_blank" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/writing-home-body.jpg" alt="What is your home doing to your body?">
+                        </div>
+                        <p class="tag">Design & Joy</p>
+                        <h4>What is your home doing to your body?</h4>
+                        <p>The body-space dialogue.</p>
+                        <span class="cta">Read more</span>
+                    </a>
+                    <a href="#contact" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/image-9.png" alt="The Habitable City">
+                        </div>
+                        <p class="tag">Book</p>
+                        <h4>The Habitable City</h4>
+                        <p>Book manuscript in preparation · 2027</p>
+                        <span class="cta">Coming soon</span>
+                    </a>
+                    <a href="https://www.uh.edu/architecture/newsroom/news-articles/2022-01-22-rodriguez-book/index.php" target="_blank" class="board-card">
+                        <div class="board-card-image">
+                            <img src="images/cover-book.png" alt="Charlotte Perriand and Kazuyo Sejima">
+                        </div>
+                        <p class="tag">Book</p>
+                        <h4>Charlotte Perriand and Kazuyo Sejima</h4>
+                        <p>University of Houston · 2022</p>
+                        <span class="cta">Read more</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero">
+            <p class="hero-label">Dr. Marta</p>
+            <h1>Let's design a <br><span>better life</span></h1>
+            <p class="mission">I bring beauty, joy, and harmony to people's environments.</p>
+            <p>PhD Architect · Design Advisor · Writer</p>
+            <a href="#work" class="cta">Explore my work</a>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 Dr. Marta · Berkeley, California
+    </footer>
+
+</body>
+</html>
