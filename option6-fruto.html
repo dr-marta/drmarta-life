@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
     <style>
         * {
             margin: 0;
@@ -183,6 +186,7 @@
             font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            color: #E87A8A;
             margin-bottom: 12px;
         }
 
@@ -232,11 +236,14 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .project-info p {
-            font-size: 13px;
+            font-size: 15px;
             color: var(--muted);
+            line-height: 1.5;
         }
 
         .project-tag {
@@ -252,8 +259,8 @@
 
         /* Newsletter Section */
         .newsletter {
-            background: var(--text);
-            color: var(--white);
+            background: var(--cream);
+            color: var(--text);
             padding: 80px 32px;
         }
 
@@ -273,10 +280,11 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 16px;
+            color: var(--orange);
         }
 
         .newsletter p {
-            color: rgba(255,255,255,0.6);
+            color: var(--muted);
             margin-bottom: 24px;
         }
 
@@ -292,45 +300,13 @@
         }
 
         .newsletter-image {
-            aspect-ratio: 4/3;
-            overflow: hidden;
+            max-width: 360px;
+            margin: 0 auto;
         }
 
         .newsletter-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        /* Marquee */
-        .marquee {
-            overflow: hidden;
-            padding: 24px 0;
-            background: var(--cream);
-            border-top: 1px solid rgba(44, 24, 16, 0.06);
-            border-bottom: 1px solid rgba(44, 24, 16, 0.06);
-        }
-
-        .marquee-content {
-            display: flex;
-            width: max-content;
-            animation: marquee 20s linear infinite;
-        }
-
-        .marquee-content span {
-            font-family: var(--font-display);
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--muted);
-            padding: 0 32px;
-            white-space: nowrap;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            height: auto;
         }
 
         /* Contact */
@@ -342,21 +318,54 @@
         }
 
         .quote-section {
-            padding: 120px 32px;
-            text-align: center;
-            background: linear-gradient(rgba(44, 24, 16, 0.55), rgba(44, 24, 16, 0.55)), url('images/alegria.jpg');
-            background-size: cover;
-            background-position: center;
+            padding: 50px 32px;
+            background: var(--cream);
+        }
+
+        .quote-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 440px 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .quote-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-items: start;
+            height: 480px;
+        }
+
+        .quote-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .quote-section p {
             font-family: var(--font-sans);
-            font-size: clamp(18px, 2.5vw, 24px);
+            font-size: clamp(22px, 2.5vw, 28px);
             font-weight: 400;
             line-height: 1.6;
-            color: var(--white);
-            max-width: 720px;
-            margin: 0 auto;
+            color: var(--text);
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .quote-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .quote-photos {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .quote-section p {
+                text-align: center;
+            }
         }
 
         .contact h2 {
@@ -406,9 +415,10 @@
 
         /* Board */
         .board {
-            background: var(--text);
-            color: var(--white);
+            background: var(--cream);
+            color: var(--text);
             padding: 100px 32px;
+            border-top: 1px solid rgba(44, 24, 16, 0.1);
         }
 
         .board-inner {
@@ -428,11 +438,11 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 12px;
-            color: var(--yellow);
+            color: #E87A8A;
         }
 
         .board-head p {
-            color: rgba(255,255,255,0.5);
+            color: var(--muted);
             max-width: 520px;
             margin: 0 auto;
         }
@@ -444,7 +454,7 @@
         }
 
         .board-card {
-            background: rgba(255,255,255,0.04);
+            background: var(--bg);
             padding: 24px;
             display: flex;
             flex-direction: column;
@@ -454,7 +464,7 @@
         }
 
         .board-card:hover {
-            background: rgba(255,255,255,0.08);
+            background: rgba(44, 24, 16, 0.06);
         }
 
         .board-card:hover img {
@@ -485,19 +495,19 @@
         }
 
         .board-card h4 {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--white);
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--text);
             margin-bottom: 12px;
-            line-height: 1.1;
+            line-height: 1.3;
         }
 
         .board-card p {
             font-size: 14px;
-            color: rgba(255,255,255,0.6);
+            color: var(--muted);
             margin-bottom: 24px;
             flex-grow: 1;
         }
@@ -505,21 +515,21 @@
         .board-card .cta {
             display: inline-block;
             padding: 10px 20px;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(44, 24, 16, 0.25);
             border-radius: 50px;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--white);
+            color: var(--text);
             text-align: center;
             align-self: flex-start;
             transition: all 0.2s;
         }
 
         .board-card:hover .cta {
-            background: var(--white);
-            color: var(--text);
-            border-color: var(--white);
+            background: var(--text);
+            color: var(--white);
+            border-color: var(--text);
         }
 
         /* Footer */
@@ -561,10 +571,11 @@
             .newsletter-inner {
                 grid-template-columns: 1fr;
                 gap: 32px;
+                text-align: center;
             }
 
             .newsletter-image {
-                display: none;
+                max-width: 280px;
             }
 
             .board-grid {
@@ -593,23 +604,29 @@
         <section id="contact" class="contact">
             <h2>Let's create something beautiful.</h2>
             <p>For design consultations, speaking, or just to say hello.</p>
-            <a href="mailto:marta@drmarta.life">marta@drmarta.life</a>
+            <a href="contact.html">marta@drmarta.design</a>
             <div class="contact-social">
-                <a href="https://www.instagram.com/marta.rodriguez_habitable/" target="_blank">Instagram</a>
+                <a href="https://www.instagram.com/dr.marta.design/" target="_blank" rel="noopener noreferrer">Instagram</a>
                 <a href="https://www.linkedin.com/in/atelier-marta-rodriguez/" target="_blank">LinkedIn</a>
                 <a href="https://designandjoy.substack.com" target="_blank">Substack</a>
             </div>
         </section>
 
         <section class="quote-section">
-            <p>"The spaces we inhabit shape who we are—whether it's a room, a city, or our inner landscape."</p>
+            <div class="quote-inner">
+                <div class="quote-photos">
+                    <img class="quote-photo" src="images/peite-2.png" alt="Petite Architecture">
+                    <img class="quote-photo" src="images/dr-marta-portada.png" alt="Dr. Marta Portada">
+                </div>
+                <p>"The spaces we inhabit shape who we are—whether it's a room, a city, or our inner landscape."</p>
+            </div>
         </section>
 
         <section id="work" class="section">
             <div class="section-inner">
                 <div class="section-head">
                     <h2>My projects</h2>
-                    <p>Ten spaces where design meets daily life — from the chair to the city, from the home to the spirit.</p>
+                    <p>Eight spaces where design meets daily life — from the chair to the city, from the home to the spirit.</p>
                 </div>
 
                 <div class="project-grid">
@@ -620,6 +637,7 @@
                         <div class="project-info">
                             <h3>Dr. Marta Design</h3>
                             <p>Design for Health & Pleasure</p>
+                            <p>Consultations to transform your home into a space that cares for you.</p>
                             <span class="project-tag">Design</span>
                         </div>
                     </a>
@@ -631,17 +649,19 @@
                         <div class="project-info">
                             <h3>HABITABLE Studio</h3>
                             <p>Architecture and Design Innovation</p>
+                            <p>Transformable living, furniture design, and urban innovation.</p>
                             <span class="project-tag">Studio</span>
                         </div>
                     </a>
 
                     <a href="https://habitable.city" target="_blank" class="project-card">
                         <div class="image-wrap">
-                            <img src="images/A-Prakash_Linear-City.jpg" alt="Habitable City">
+                            <img src="images/Mori.png" alt="Habitable City">
                         </div>
                         <div class="project-info">
                             <h3>Habitable City</h3>
                             <p>Ideas for More Human Cities</p>
+                            <p>A journal exploring architecture, public space and urban life.</p>
                             <span class="project-tag">Journal</span>
                         </div>
                     </a>
@@ -653,17 +673,19 @@
                         <div class="project-info">
                             <h3>Design & Joy</h3>
                             <p>Letters on How Space Shapes Life</p>
+                            <p>Essays on how space shapes body, mind and spirit.</p>
                             <span class="project-tag">Newsletter</span>
                         </div>
                     </a>
 
                     <a href="https://alegriadevivir.life" target="_blank" class="project-card">
                         <div class="image-wrap">
-                            <img src="images/alegria.jpg" alt="Alegría de Vivir">
+                            <img src="images/tailandia.jpg" alt="Alegría de Vivir">
                         </div>
                         <div class="project-info">
                             <h3>Alegría de Vivir</h3>
                             <p>Mind, Body and Spirit</p>
+                            <p>A path of peace, presence and inner transformation.</p>
                             <span class="project-tag">Spirituality</span>
                         </div>
                     </a>
@@ -675,6 +697,7 @@
                         <div class="project-info">
                             <h3>La Escuela de las Cosas Importantes</h3>
                             <p>Stories for Children</p>
+                            <p>Children's stories that teach through beauty and wonder.</p>
                             <span class="project-tag">Books</span>
                         </div>
                     </a>
@@ -686,40 +709,20 @@
                         <div class="project-info">
                             <h3>Bancroft Garden</h3>
                             <p>A Garden for the Neighborhood</p>
+                            <p>A community garden protecting shared green space in Berkeley.</p>
                             <span class="project-tag">Community Service</span>
                         </div>
                     </a>
 
-                    <a href="#contact" class="project-card">
+                    <a href="furniture.html" target="_blank" class="project-card">
                         <div class="image-wrap">
-                            <img src="images/balcon.png" alt="Web Design">
+                            <img src="images/h-shelves.jpg" alt="Custom Furniture">
                         </div>
                         <div class="project-info">
-                            <h3>Web Design</h3>
-                            <p>Elegant Web Design</p>
-                            <span class="project-tag">Service</span>
-                        </div>
-                    </a>
-
-                    <a href="https://subtlerevolution.net" target="_blank" class="project-card">
-                        <div class="image-wrap">
-                            <img src="images/Antonello_da_Messinan.webp" alt="Petite Architecture">
-                        </div>
-                        <div class="project-info">
-                            <h3>Petite Architecture</h3>
-                            <p>From the Chair to the City</p>
-                            <span class="project-tag">Research</span>
-                        </div>
-                    </a>
-
-                    <a href="#" class="project-card">
-                        <div class="image-wrap">
-                            <img src="images/painting.png" alt="Paintings">
-                        </div>
-                        <div class="project-info">
-                            <h3>Paintings</h3>
-                            <p>Joyful paintings</p>
-                            <span class="project-tag">Art</span>
+                            <h3>Custom Furniture</h3>
+                            <p>Made for how you wish to live.</p>
+                            <p>Furniture designed to adapt to your home and your life.</p>
+                            <span class="project-tag">Furniture</span>
                         </div>
                     </a>
                 </div>
@@ -734,31 +737,10 @@
                     <a href="https://designandjoy.substack.com" target="_blank" class="cta">Subscribe</a>
                 </div>
                 <div class="newsletter-image">
-                    <img src="images/petite-architecture-02.png" alt="">
+                    <img src="images/dr-marta-photo.png" alt="Dr. Marta">
                 </div>
             </div>
         </section>
-
-        <div class="marquee">
-            <div class="marquee-content">
-                <span>Design for better living</span>
-                <span>☺</span>
-                <span>From the chair to the city</span>
-                <span>☺</span>
-                <span>Beauty, joy, and harmony</span>
-                <span>☺</span>
-                <span>Spaces that shape who we are</span>
-                <span>☺</span>
-                <span>Design for better living</span>
-                <span>☺</span>
-                <span>From the chair to the city</span>
-                <span>☺</span>
-                <span>Beauty, joy, and harmony</span>
-                <span>☺</span>
-                <span>Spaces that shape who we are</span>
-                <span>☺</span>
-            </div>
-        </div>
 
         <section id="writing" class="board">
             <div class="board-inner">
@@ -776,24 +758,6 @@
                         <p>On the healing power of rooms.</p>
                         <span class="cta">Read more</span>
                     </a>
-                    <a href="https://designandjoy.substack.com/p/learning-beyond-walls-designing-joyful" target="_blank" class="board-card">
-                        <div class="board-card-image">
-                            <img src="images/writing-learning-beyond-walls.png" alt="Learning Beyond Walls">
-                        </div>
-                        <p class="tag">Design & Joy</p>
-                        <h4>Learning Beyond Walls</h4>
-                        <p>Designing joyful schools.</p>
-                        <span class="cta">Read more</span>
-                    </a>
-                    <a href="https://designandjoy.substack.com/p/when-color-becomes-space" target="_blank" class="board-card">
-                        <div class="board-card-image">
-                            <img src="images/writing-color-space.jpg" alt="When color becomes space">
-                        </div>
-                        <p class="tag">Design & Joy</p>
-                        <h4>When color becomes space</h4>
-                        <p>Color as an inhabitant of architecture.</p>
-                        <span class="cta">Read more</span>
-                    </a>
                     <a href="https://designandjoy.substack.com/p/what-is-your-home-doing-to-your-body" target="_blank" class="board-card">
                         <div class="board-card-image">
                             <img src="images/writing-home-body.jpg" alt="What is your home doing to your body?">
@@ -803,22 +767,13 @@
                         <p>The body-space dialogue.</p>
                         <span class="cta">Read more</span>
                     </a>
-                    <a href="#contact" class="board-card">
+                    <a href="https://designandjoy.substack.com/p/your-childs-first-environment" target="_blank" class="board-card">
                         <div class="board-card-image">
-                            <img src="images/image-9.png" alt="The Habitable City">
+                            <img src="images/writing-child-environment.jpg" alt="Your Child's First Environment">
                         </div>
-                        <p class="tag">Book</p>
-                        <h4>The Habitable City</h4>
-                        <p>Book manuscript in preparation · 2027</p>
-                        <span class="cta">Coming soon</span>
-                    </a>
-                    <a href="https://www.uh.edu/architecture/newsroom/news-articles/2022-01-22-rodriguez-book/index.php" target="_blank" class="board-card">
-                        <div class="board-card-image">
-                            <img src="images/cover-book.png" alt="Charlotte Perriand and Kazuyo Sejima">
-                        </div>
-                        <p class="tag">Book</p>
-                        <h4>Charlotte Perriand and Kazuyo Sejima</h4>
-                        <p>University of Houston · 2022</p>
+                        <p class="tag">Design & Joy</p>
+                        <h4>Your Child's First Environment</h4>
+                        <p>The space that shapes a child's becoming.</p>
                         <span class="cta">Read more</span>
                     </a>
                 </div>
@@ -830,7 +785,7 @@
             <h1>Let's design a <br><span>better life</span></h1>
             <p class="mission">I bring beauty, joy, and harmony to people's environments.</p>
             <p>PhD Architect · Design Advisor · Writer</p>
-            <a href="#work" class="cta">Explore my work</a>
+            <a href="contact.html" class="cta">Explore my work</a>
         </section>
 
     </main>

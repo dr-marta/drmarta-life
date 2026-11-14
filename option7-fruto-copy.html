@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Marta — Architect, Professor and Design Advisor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F5F0E8;
+            --cream: #FAF7F2;
+            --white: #FFFFFF;
+            --text: #2C1810;
+            --brown: #5C3D2E;
+            --orange: #D97B4A;
+            --muted: #9B8575;
+            --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Anton', Impact, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-sans);
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        /* Main */
+        main {
+            padding-top: 0;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 40px 80px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-sans);
+            font-size: clamp(48px, 8vw, 84px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .hero h1 span {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(80px, 15vw, 160px);
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: normal;
+            line-height: 0.95;
+            margin-top: 8px;
+        }
+
+        .hero .mission {
+            font-family: var(--font-sans);
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--brown);
+            margin-bottom: 16px;
+        }
+
+        .hero .subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--text);
+            color: var(--white);
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .hero .cta:hover {
+            background: var(--orange);
+        }
+
+        /* Full width image card */
+        .feature-card {
+            display: block;
+            margin: 40px;
+            position: relative;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .feature-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 48px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+        }
+
+        .feature-card-content h3 {
+            font-family: var(--font-sans);
+            font-size: 42px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .feature-card-content p {
+            color: rgba(255,255,255,0.7);
+            font-size: 15px;
+        }
+
+        /* Quote section */
+        .quote-section {
+            padding: 120px 40px;
+            text-align: center;
+            background: var(--cream);
+        }
+
+        .quote-section p {
+            font-family: var(--font-sans);
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 40px;
+        }
+
+        .section-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-head {
+            margin-bottom: 64px;
+            text-align: center;
+        }
+
+        .section-head h2 {
+            font-family: var(--font-display);
+            font-size: clamp(44px, 7vw, 72px);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-head p {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Split display text */
+        .split-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 64px;
+            flex-wrap: wrap;
+        }
+
+        .split-text .left {
+            font-family: var(--font-display);
+            font-size: clamp(80px, 12vw, 140px);
+            color: var(--text);
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .split-text .right {
+            font-family: var(--font-display);
+            font-size: clamp(80px, 12vw, 140px);
+            color: var(--orange);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .project-card {
+            position: relative;
+            background: var(--cream);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card .image-wrap {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-info {
+            opacity: 1;
+        }
+
+        .project-info h3 {
+            font-family: var(--font-sans);
+            font-size: 28px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .project-info p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .project-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 6px 12px;
+            background: var(--white);
+            font-family: var(--font-display);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: var(--text);
+            color: var(--white);
+            padding: 100px 40px;
+        }
+
+        .newsletter-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .newsletter-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+
+        .newsletter h2 {
+            font-family: var(--font-sans);
+            font-size: 48px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 28px;
+            font-size: 16px;
+        }
+
+        .newsletter .cta {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .newsletter-image {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        .newsletter-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Marquee */
+        .marquee {
+            overflow: hidden;
+            padding: 28px 0;
+            background: var(--cream);
+            border-top: 1px solid rgba(44, 24, 16, 0.06);
+            border-bottom: 1px solid rgba(44, 24, 16, 0.06);
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-content span {
+            font-family: var(--font-display);
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            padding: 0 40px;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Board */
+        .board {
+            background: var(--cream);
+            padding: 100px 40px;
+        }
+
+        .board-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .board-head {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .board-head h2 {
+            font-family: var(--font-sans);
+            font-size: 42px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .board-head p {
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .board-card {
+            background: var(--white);
+            padding: 32px;
+        }
+
+        .board-card .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--orange);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .board-card h4 {
+            font-family: var(--font-sans);
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .board-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .board-card a {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 120px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: var(--font-sans);
+            font-size: 52px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin-bottom: 28px;
+            font-size: 16px;
+        }
+
+        .contact a {
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+            font-size: 16px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .contact a:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .contact-social {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .contact-social a {
+            border-bottom: none;
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-social a:hover {
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+            background: var(--bg);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .feature-card {
+                margin: 20px;
+            }
+
+            .feature-card img {
+                height: 400px;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .split-text {
+                gap: 12px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .project-card .image-wrap {
+                aspect-ratio: 4/3;
+            }
+
+            .project-info {
+                opacity: 1;
+            }
+
+            .newsletter-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .newsletter-image {
+                display: none;
+            }
+
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="nav-logo">Dr. Marta</a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#writing">Writing</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero">
+            <p class="hero-label">Dr. Marta · Berkeley, California</p>
+            <h1>How can we design <br>a <span>better life?</span></h1>
+            <p class="mission">I bring beauty, joy, and harmony to people's environments.</p>
+            <p class="subtitle">PhD Architect · Design Advisor · Professor · Writer</p>
+            <a href="#work" class="cta">Explore my work</a>
+        </section>
+
+        <section class="quote-section">
+            <p>"The spaces we inhabit shape who we are — whether that space is a city, a room, or our own inner landscape."</p>
+        </section>
+
+        <section id="work" class="section">
+            <div class="section-inner">
+                <div class="section-head">
+                    <h2>My projects</h2>
+                    <p>Eight spaces where design meets daily life — from the chair to the city, from the home to the spirit.</p>
+                </div>
+
+                <div class="split-text">
+                    <span class="left">My</span>
+                    <span class="right">Work</span>
+                </div>
+
+                <div class="project-grid">
+                    <a href="https://drmarta.design" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/drmarta.png" alt="Dr. Marta Design">
+                        </div>
+                        <div class="project-info">
+                            <h3>Dr. Marta Design</h3>
+                            <p>Design for Health & Pleasure</p>
+                        </div>
+                        <span class="project-tag">Design</span>
+                    </a>
+
+                    <a href="https://habitable.studio" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/habitable-studio.png" alt="HABITABLE Studio">
+                        </div>
+                        <div class="project-info">
+                            <h3>HABITABLE Studio</h3>
+                            <p>Architecture and Design Innovation</p>
+                        </div>
+                        <span class="project-tag">Studio</span>
+                    </a>
+
+                    <a href="https://habitable.city" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/habitable-city.jpg" alt="Habitable City">
+                        </div>
+                        <div class="project-info">
+                            <h3>Habitable City</h3>
+                            <p>Ideas for More Human Cities</p>
+                        </div>
+                        <span class="project-tag">Journal</span>
+                    </a>
+
+                    <a href="https://designandjoy.substack.com" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/design-joy.png" alt="Design & Joy">
+                        </div>
+                        <div class="project-info">
+                            <h3>Design & Joy</h3>
+                            <p>Letters on How Space Shapes Life</p>
+                        </div>
+                        <span class="project-tag">Newsletter</span>
+                    </a>
+
+                    <a href="https://alegriadevivir.life" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/alegria.jpg" alt="Alegría de Vivir">
+                        </div>
+                        <div class="project-info">
+                            <h3>Alegría de Vivir</h3>
+                            <p>Mind, Body and Spirit</p>
+                        </div>
+                        <span class="project-tag">Spirituality</span>
+                    </a>
+
+                    <a href="https://alegriadevivir.life/escuela" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/escuela.png" alt="La Escuela de las Cosas Importantes">
+                        </div>
+                        <div class="project-info">
+                            <h3>La Escuela de las Cosas Importantes</h3>
+                            <p>Stories for Children</p>
+                        </div>
+                        <span class="project-tag">Books</span>
+                    </a>
+
+                    <a href="https://bancroftgardenberkeley.org" target="_blank" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/bancroft.png" alt="Bancroft Garden">
+                        </div>
+                        <div class="project-info">
+                            <h3>Bancroft Garden</h3>
+                            <p>A Garden for the Neighborhood</p>
+                        </div>
+                        <span class="project-tag">Community</span>
+                    </a>
+
+                    <a href="#contact" class="project-card">
+                        <div class="image-wrap">
+                            <img src="images/webdesign.png" alt="Web Design">
+                        </div>
+                        <div class="project-info">
+                            <h3>Web Design</h3>
+                            <p>Community Service & Design</p>
+                        </div>
+                        <span class="project-tag">Service</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="newsletter-inner">
+                <div>
+                    <p class="newsletter-label">Newsletter</p>
+                    <h2>Design & Joy</h2>
+                    <p>Letters on architecture, the body, relationships, childhood, and the joy of living.</p>
+                    <a href="https://designandjoy.substack.com" target="_blank" class="cta">Subscribe</a>
+                </div>
+                <div class="newsletter-image">
+                    <img src="images/newsletter.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>Design for better living</span>
+                <span>☺</span>
+                <span>From the chair to the city</span>
+                <span>☺</span>
+                <span>Beauty, joy, and harmony</span>
+                <span>☺</span>
+                <span>Spaces that shape who we are</span>
+                <span>☺</span>
+                <span>Design for better living</span>
+                <span>☺</span>
+                <span>From the chair to the city</span>
+                <span>☺</span>
+                <span>Beauty, joy, and harmony</span>
+                <span>☺</span>
+                <span>Spaces that shape who we are</span>
+                <span>☺</span>
+            </div>
+        </div>
+
+        <section id="writing" class="board">
+            <div class="board-inner">
+                <div class="board-head">
+                    <h2>Latest writing</h2>
+                    <p>Essays and articles on architecture, urbanism, and the design of life.</p>
+                </div>
+                <div class="board-grid">
+                    <div class="board-card">
+                        <p class="tag">Habitable City</p>
+                        <h4>Living Chair</h4>
+                        <p>An Urban Furniture Landscape · February 2026</p>
+                        <a href="https://habitable.city/living-chair-a-chair-landscape-from-the-body-to-the-city/" target="_blank">Read more</a>
+                    </div>
+                    <div class="board-card">
+                        <p class="tag">Habitable City</p>
+                        <h4>Urban Domesticity</h4>
+                        <p>The City as a Shared Interior · September 2025</p>
+                        <a href="https://habitable.city/urban-domesticity-the-city-as-a-shared-interior-2/" target="_blank">Read more</a>
+                    </div>
+                    <div class="board-card">
+                        <p class="tag">Habitable City</p>
+                        <h4>Learning Beyond Walls</h4>
+                        <p>The Urbanism of School · May 2025</p>
+                        <a href="https://habitable.city/learning-beyond-walls-the-urbanism-of-school-design/" target="_blank">Read more</a>
+                    </div>
+                    <div class="board-card">
+                        <p class="tag">Habitable City</p>
+                        <h4>Tokyo as the Caring City</h4>
+                        <p>November 2024</p>
+                        <a href="https://habitable.city/tokyo-toilet-in-wim-wenders-film-perfect-days/" target="_blank">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Let's create something beautiful.</h2>
+            <p>For design consultations, speaking, or just to say hello.</p>
+            <a href="mailto:marta@drmarta.life">marta@drmarta.life</a>
+            <div class="contact-social">
+                <a href="https://www.instagram.com/dr.marta.design/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.linkedin.com/in/atelier-marta-rodriguez/" target="_blank">LinkedIn</a>
+                <a href="https://designandjoy.substack.com" target="_blank">Substack</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Dr. Marta · Berkeley, California</p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>

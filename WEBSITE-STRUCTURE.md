@@ -414,7 +414,7 @@ Let's talk.
 
 ### Social Links
 
-- Instagram: @marta.rodriguez_habitable
+- Instagram: @dr.marta.design
 - LinkedIn: /in/atelier-marta-rodriguez/
 - Substack: Design & Joy
 
@@ -498,7 +498,7 @@ Let's talk.
   "url": "https://drmarta.life",
   "sameAs": [
     "https://www.linkedin.com/in/atelier-marta-rodriguez/",
-    "https://www.instagram.com/marta.rodriguez_habitable/",
+    "https://www.instagram.com/dr.marta.design/",
     "https://designandjoy.substack.com/"
   ]
 }
